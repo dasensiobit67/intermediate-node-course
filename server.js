@@ -37,7 +37,7 @@ app.route('/users/:id')
 // READ
 .get((req,res)=>{
   // User.findById()
-  console.log("GET "+req.params.id);
+  //console.log("GET "+req.params.id);
   User.findById(req.params.id,(err,data)=>{
     if (err){
       res.json({
@@ -55,14 +55,42 @@ app.route('/users/:id')
         data: data
       })
     }
-  });
+  })
 })
 
 // UPDATE
 .put((req,res)=>{
   // User.findByIdAndUpdate()
-  console.log("UPDATE "+req.params.id);
+  //console.log("UPDATE "+req.params.id);
+  req.params.id,
+    {
+      name:req.body.newData.name,
+      email:req.body.newData.email,
+      password:req.body.newData.password
+    },
+    {
+      new:true
+    },
+    (err,data)=>{
+      if (err){
+        res.json({
+          success: false,
+          message: err
+        })
+      } else if (!data){
+        res.json({
+          success: false,
+          message: "Not Found"
+        })
+      } else {
+        res.json({
+          success: true,
+          data: data
+        })
+      }
+    }
 })
+
 // DELETE
 .delete((req,res)=>{
   // User.findByIdAndDelete()
