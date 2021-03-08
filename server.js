@@ -13,18 +13,22 @@ app.listen(port, ()=>{
 // CREATE
 app.post('/users',(req,res)=>{
   // User.create()
+  console.log("POST");
 })
 
 app.route('/users/:id')
 // READ
 .get((req,res)=>{
   // User.findById()
+  console.log("GET "+req.params.id);
 })
 // UPDATE
 .put((req,res)=>{
   // User.findByIdAndUpdate()
+  console.log("UPDATE "+req.params.id);
 })
 // DELETE
 .delete((req,res)=>{
   // User.findByIdAndDelete()
+  console.log("DELETE "+req.params.id);
 })
